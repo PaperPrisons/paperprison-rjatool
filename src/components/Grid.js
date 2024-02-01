@@ -1,28 +1,28 @@
-import React from 'react'
-import styled, { keyframes } from 'styled-components'
+import React from "react";
+import styled, { keyframes } from "styled-components";
 
-const motion = props => keyframes`
+const motion = (props) => keyframes`
   0%, 100% {
     opacity: 1;
   }
   50% {
     opacity: 0.5;
   }
-`
+`;
 
 const DefaultSpinner = styled.div`
   display: inline-block;
   position: relative;
-  width: ${p => `${p.size}${p.sizeUnit}`};
-  height: ${p => `${p.size}${p.sizeUnit}`};
+  width: ${(p) => `${p.size}${p.sizeUnit}`};
+  height: ${(p) => `${p.size}${p.sizeUnit}`};
 
   div {
     position: absolute;
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    background: ${p => p.color};
-    animation: ${p => motion(p)} 1.2s linear infinite;
+    background: ${(p) => p.color};
+    animation: ${(p) => motion(p)} 1.2s linear infinite;
   }
 
   div:nth-child(1) {
@@ -70,7 +70,7 @@ const DefaultSpinner = styled.div`
     left: 45px;
     animation-delay: -1.6s;
   }
-`
+`;
 
 const Default = ({ color, size, sizeUnit }) => (
   <DefaultSpinner color={color} size={size} sizeUnit={sizeUnit}>
@@ -84,12 +84,12 @@ const Default = ({ color, size, sizeUnit }) => (
     <div />
     <div />
   </DefaultSpinner>
-)
+);
 
 Default.defaultProps = {
   size: 64, // overriding this prop changes alignment, but not size. a bug inherited from open source library
-  color: '#9dbcdb',
-  sizeUnit: 'px'
-}
+  color: "#9dbcdb",
+  sizeUnit: "px",
+};
 
-export default Default
+export default Default;

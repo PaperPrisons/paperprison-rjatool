@@ -8,6 +8,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fontsource/ibm-plex-sans": "^5.0.18",
     "eslint": "^8.56.0",
     "eslint-config-next": "13.4.4",
     "next": "13.4.4",

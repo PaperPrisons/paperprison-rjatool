@@ -6,10 +6,11 @@ const Select = ({
   options = [],
   multiple = false,
   disableAll = false,
-  onChange = () => {}
+  onChange = () => {},
 }) => {
   const [all, setAll] = useState(false);
   const [show, setShow] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const wrapperRef = useRef(null);
   const labelId = label.toLowerCase().replace(/\s+/g, "-");
 
@@ -20,7 +21,7 @@ const Select = ({
           options
             .map((o) => o.value)
             .sort()
-            .join(".")
+            .join("."),
     );
     setShow(!show);
   };
@@ -51,16 +52,13 @@ const Select = ({
           options
             .map((o) => o.value)
             .sort()
-            .join(".")
+            .join("."),
     );
     onChange(newValue);
   };
 
   useEffect(() => {
     function handleClickOutside(event) {
-      // prevent will block all other events on body, no need to do it
-      // event.preventDefault()
-      // event.stopPropagation()
       if (
         wrapperRef.current &&
         !wrapperRef.current.contains(event.target) &&
@@ -76,6 +74,10 @@ const Select = ({
     };
   }, [wrapperRef]);
 
+  const filteredOptions = options.filter((option) =>
+    String(option.text).toLowerCase().includes(searchTerm.toLowerCase()),
+  );
+
   return (
     <div className={`select-component select-component-${labelId}`}>
       <label onClick={toggleModal} className={show ? "modal-actived" : ""}>
@@ -84,6 +86,22 @@ const Select = ({
       {show && (
         <div ref={wrapperRef} className="modal-wrapper">
           <h3>{label}</h3>
+          {label === "Offenses" && (
+            <div className="search-bar-container">
+              <input
+                type="text"
+                placeholder="Search Offenses"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="search-bar"
+              />
+              {searchTerm && (
+                <div className="clear-icon" onClick={() => setSearchTerm("")}>
+                  &#x2715;
+                </div>
+              )}
+            </div>
+          )}
           <ul className={`modal-${labelId}`}>
             {multiple && !disableAll && (
               <li onClick={onAllToggle}>
@@ -91,7 +109,7 @@ const Select = ({
                 All
               </li>
             )}
-            {options.map((option) => (
+            {filteredOptions.map((option) => (
               <li key={option.text} onClick={() => onItemToggle(option.value)}>
                 <input
                   type="checkbox"
@@ -105,12 +123,10 @@ const Select = ({
               </li>
             ))}
           </ul>
-          {/* <div className="modal-footer">
-            <button onClick={() => setShow(false)}>Confirm</button>
-          </div> */}
         </div>
       )}
     </div>
   );
 };
+
 export default Select;
