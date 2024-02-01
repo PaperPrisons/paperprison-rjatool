@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import GenericPage from "@/components/GenericPage";
 import BackToTopButton from "@/components/BackToTopButton";
 import "@fontsource/ibm-plex-sans";
+import Head from "@/components/Head";
 
 const DynamicTool = dynamic(() => import("@/components/Tool"), {
   ssr: false,
@@ -14,6 +15,8 @@ const DynamicLayout = dynamic(() => import("@/components/Layout"), {
 
 export default function App() {
   return (
+    <>
+    <Head/>
     <DynamicLayout>
       <div className="inner-anchors">
         <div className="sub-nav-wrapper">
@@ -476,5 +479,6 @@ export default function App() {
       </GenericPage>
       <BackToTopButton />
     </DynamicLayout>
+    </>
   );
 }
