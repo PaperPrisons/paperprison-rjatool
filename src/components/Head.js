@@ -2,8 +2,8 @@ import NextHead from 'next/head';
 
 const Head = () => (
   <NextHead>
-    <title>Paper Prisons : RJA Demo tool</title>
-    <link rel="icon" href="images/favicon.png" />
+    <title>Racial Justice Act Demo tool</title>
+    <link rel="icon" href="https://paperprisons.org/images/favicon.png" />
   </NextHead>
 );
 

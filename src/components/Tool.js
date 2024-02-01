@@ -451,8 +451,8 @@ export default function App() {
         </a>
         ; we also welcome your comments and or feedback on the tool’s design are
         welcome too. (See also{" "}
-        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4392014">
-          <i>
+        <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4392014" target="_blank">
+          <i >
             Proving Actionable Racial Disparity Under the California Racial
             Justice Act
           </i>
