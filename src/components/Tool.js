@@ -471,8 +471,7 @@ export default function App() {
         <a href="mailto:rja@paperprisons.org?subject=Feedback%20for%20Your%20App">
           rja@paperprisons.org
         </a>
-        ; we also welcome your comments and or feedback on the tool’s design are
-        welcome too. (See also{" "}
+        ; we also welcome your comments and feedback. (See also{" "}
         <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4392014" target="_blank">
           <i >
             Proving Actionable Racial Disparity Under the California Racial

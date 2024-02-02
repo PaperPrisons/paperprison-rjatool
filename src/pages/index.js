@@ -412,16 +412,6 @@ export default function App() {
             <td>White race alone, not Hispanic</td>
           </tr>
         </table>
-        <h3>Confidentiality Protections</h3>
-        <p>
-          Due to confidentiality concerns, our website does not display data for
-          counties in which the population for a specific studied racial/ethnic
-          group is 10 or fewer for the year being viewed. County data that are
-          hidden when individual counties are selected will always be shown
-          within statewide totals, as well as when multiple counties are
-          selected and confidentiality is not at risk. Our charts and tables
-          will show gaps and/or "N/A" when data are not available.
-        </p>
       </GenericPage>
       <GenericPage id="acknowledgements">
         <h2>Acknowledgements</h2>
@@ -440,7 +430,7 @@ export default function App() {
           This tool represents the collaboration of many dedicated volunteers
           and Paper Prisons team members including Bill Sundstrom, Yabo Du,
           Bennett Cyphers, Rayna Saron, Akhil Raj, Arthi Kundadka, Yangxier Sui,
-          Lukas Pinkston, , Navid Shaghaghi and Colleen Chien.
+          Lukas Pinkston, Navid Shaghaghi and Colleen Chien.
         </p>
         <p>
           For more information about the RJA, please see:
