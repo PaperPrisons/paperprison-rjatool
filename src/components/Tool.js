@@ -69,11 +69,33 @@ export default function App() {
     chart: [],
   });
   const [showTable, setShowTable] = useState(false);
-  const onDataDownload = () => {
-    const ws = utils.json_to_sheet(filteredRecords.raw);
-    const wb = utils.book_new();
-    utils.book_append_sheet(wb, ws, "Data");
-    writeFileXLSX(wb, "PaperPrison - Data.xlsx");
+  const onDataDownload = () => { const selectedKeys = [
+    "county",
+    "PC_code",
+    "PC_offense",
+    "Race",
+    "Year",
+    "Event Point",
+    "Raw numbers",
+    "Rate per population",
+    "Rate per prior event point",
+    "Disparity gap per population",
+    "Disparity gap per prior event point",
+  ];
+  let jsonList = filteredRecords.raw;
+  const filteredJsonList = jsonList.map((obj) => {
+    const filteredObj = {};
+    selectedKeys.forEach((key) => {
+      if (obj.hasOwnProperty(key)) {
+        filteredObj[key] = obj[key];
+      }
+    });
+    return filteredObj;
+  });
+  const ws = utils.json_to_sheet(filteredJsonList);
+  const wb = utils.book_new();
+  utils.book_append_sheet(wb, ws, "Data");
+  writeFileXLSX(wb, "PaperPrison - Data.xlsx");
   };
   const onDataTableDisplayToggled = () => {
     setShowTable(!showTable);
@@ -81,7 +103,7 @@ export default function App() {
 
   const filter = (
     { decisionPoints, races, offenses, years, measurement /*, genders*/ },
-    records = fullRecords
+    records = fullRecords,
   ) => {
     const allowedEventPoints = [
       "Charge",
@@ -203,7 +225,7 @@ export default function App() {
             ? 0
             : item.disparity_gap_pop_w;
           item["Disparity gap per prior event point"] = isNaN(
-            item.disparity_gap_cond_w
+            item.disparity_gap_cond_w,
           )
             ? 0
             : item.disparity_gap_cond_w;
@@ -259,7 +281,7 @@ export default function App() {
           // are present in the dataset
           _years = years.filter((y) => _years.includes(y));
           _decisionPoints = decisionPoints.filter((d) =>
-            _decisionPoints.includes(d)
+            _decisionPoints.includes(d),
           );
           _offenses = _offenses.includes(offenses[0])
             ? [offenses[0]]
@@ -281,7 +303,7 @@ export default function App() {
             measurement: measurement,
             //genders: genders,
           },
-          items
+          items,
         );
 
         setLoading(false);
@@ -571,7 +593,7 @@ export default function App() {
           <IconCharts
             data={filteredRecords.chart}
             races={Object.fromEntries(
-              Object.entries(RACES).filter(([key]) => races.includes(key))
+              Object.entries(RACES).filter(([key]) => races.includes(key)),
             )}
             eventPoints={decisionPoints}
             base={chartConfig.base}
